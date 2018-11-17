@@ -1,0 +1,15 @@
+#配置数据库
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/www?useSSL=false&allowMultiQueries=true
+    username: root
+    password: h384175954+
+
+#MyBatis中的mapper.xml的配置
+mybatis:
+  type-aliases-package: com.han.test.springboot_test3.mapper
+  mapper-locations: classpath:mapperXml/BacklogMapper.xml
+
+#liquibase
