@@ -29,7 +29,7 @@ public class BacklogController {
     //get请求处理
     @GetMapping
     public  List<Backlog>  get(HttpServletRequest request, HttpServletResponse response) {
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", "*");//允许跨域访问
         String sid = request.getParameter("id");
         if (sid != null) {
             Long id = Long.valueOf(sid);
