@@ -119,4 +119,27 @@ public class ExcelTest {
 //        }
 //        return collectEle.toString();
 //    }
+
+    @Test
+    public void testCompareTime(){
+        List<Integer> test1 = new ArrayList<>();
+        List<Integer> test2 = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            test1.add(i);
+            test2.add(i);
+        }
+        Date begin1 = new Date();
+        for (int i = 0; i < 1000; i++) {
+            System.out.println(test1.indexOf(i));
+        }
+        Date end1 = new Date();
+
+        Date begin2 = new Date();
+        test2.stream().forEach(System.out::println);
+        Date end2 = new Date();
+
+        System.out.println(end1.getTime() - begin1.getTime());
+        System.out.println(end2.getTime() - begin2.getTime());
+
+    }
 }
