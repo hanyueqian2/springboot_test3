@@ -12,6 +12,7 @@ public class SpringbootTest3Application {
 
     public static void main(String[] args) {
         SpringApplication.run(com.han.test.springboot_test3.SpringbootTest3Application.class, args);
+        System.out.println("ok");
     }
 }
 // (module,businessNumber,task,leaveTime,schedule,enter)

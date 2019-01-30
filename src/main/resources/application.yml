@@ -6,6 +6,11 @@ spring:
     url: jdbc:mysql://localhost:3306/www?useSSL=false&allowMultiQueries=true
     username: root
     password: h384175954+
+  #设置文件上传参数
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      enabled: false
 
 #MyBatis中的mapper.xml的配置
 mybatis:
