@@ -3,11 +3,13 @@ package com.han.test.springboot_test3;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
 @MapperScan("com.han.test.springboot_test3.mapper")
+@EnableScheduling
 public class SpringbootTest3Application {
 
     public static void main(String[] args) {

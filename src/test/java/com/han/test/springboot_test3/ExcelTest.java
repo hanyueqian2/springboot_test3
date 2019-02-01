@@ -11,6 +11,8 @@ import java.beans.PropertyDescriptor;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -288,6 +290,29 @@ public class ExcelTest {
      */
     @Test
     public void testSync(){
+
+    }
+
+    /**
+     * 测试时间格式异常
+     */
+    @Test
+    public void testDate() {
+        String value = "2018-01-01";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = simpleDateFormat.parse(String.valueOf(value));
+            System.out.println(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 自动执行
+     */
+    @Test
+    public void testAutoRun(){
 
     }
 }
