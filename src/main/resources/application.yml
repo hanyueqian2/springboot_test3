@@ -17,4 +17,15 @@ mybatis:
   type-aliases-package: com.han.test.springboot_test3.mapper
   mapper-locations: classpath:mapperXml/BacklogMapper.xml
 
-#liquibase
+#添加日志级别
+debug: true
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: DEBUG
+        boot:
+          autoconfigure: ERROR
+      hibernate: ERROR

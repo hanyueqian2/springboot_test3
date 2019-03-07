@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.han.test.springboot_test3.SpringbootTest3Application
-

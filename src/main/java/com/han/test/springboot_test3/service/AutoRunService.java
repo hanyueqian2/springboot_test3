@@ -12,9 +12,10 @@ public class AutoRunService {
         this.name = name;
     }
 
-    @Async
-    @Scheduled(cron = "0/2 * * * * ? ")
-    public void send() {
-        System.out.println("123456789");
-    }
+    //定时执行
+//    @Async
+//    @Scheduled(cron = "0/2 * * * * ? ")
+//    public void send() {
+//        System.out.println("123456789");
+//    }
 }

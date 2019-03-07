@@ -6,10 +6,12 @@ import com.han.test.springboot_test3.utils.excel.Student;
 import org.junit.Test;
 
 import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -313,6 +315,35 @@ public class ExcelTest {
      */
     @Test
     public void testAutoRun(){
+        String str = "2.0";
+        if (str.contains(".") && !str.contains("E")) {
+            str = String.valueOf(Double.valueOf(str).longValue());
+        } else if (str.contains("E")) {
+            str = String.valueOf(Double.valueOf(str).longValue());
+        }
+        System.out.println(str);
+    }
 
+    /**
+     * 内省机制
+     */
+    @Test
+    public void testBean() throws IntrospectionException, InvocationTargetException, IllegalAccessException {
+        Student student = new Student();
+        BeanInfo userBeanInfo = Introspector.getBeanInfo(Student.class, Object.class) ;
+        PropertyDescriptor[] pds = userBeanInfo.getPropertyDescriptors() ;
+        for (PropertyDescriptor pd : pds) {
+            if ("java.lang.String".equals(pd.getPropertyType().getName())) {
+                Method method = pd.getWriteMethod();
+                method.invoke(student, "");
+            }
+
+        }
+        System.out.println(student);
+    }
+    
+    @Test
+    public void testTime() {
+        System.out.println(System.currentTimeMillis());
     }
 }

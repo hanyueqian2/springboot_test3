@@ -1,1 +1,21 @@
-hello boy
+${AnsiColor.BRIGHT_YELLOW}
+- - - - - - - - - - - - - - - - - - - - - - - -
+|                   ${AnsiColor.BRIGHT_GREEN}_ooOoo_${AnsiColor.BRIGHT_YELLOW}                   |
+|                  ${AnsiColor.BRIGHT_GREEN}o8888888o${AnsiColor.BRIGHT_YELLOW}                  |
+|                  ${AnsiColor.BRIGHT_GREEN}88${AnsiColor.BRIGHT_YELLOW}" . "${AnsiColor.BRIGHT_GREEN}88${AnsiColor.BRIGHT_YELLOW}                  |
+|                  (| -_- |)                  |
+|                  O\  =  /O                  |
+|               ____/`---'\____               |
+|             .'  \\|     |//  `.             |
+|            /  \\|||  :  |||//  \            |
+|           /  _||||| -:- |||||-  \           |
+|           |   | \\\  -  /// |   |           |
+|           | \_|  ''\---/''  |   |           |
+|           \  .-\__  `-`  ___/-. /           |
+|         ___`. .'  /--.--\  `. . __          |
+|      ."" '<  `.___\_<|>_/___.'  >'"".       |
+|     | | :  `- \`.;`\ _ /`;.`/ - ` : | |     |
+|     \  \ `-.   \_ __\ /__ _/   .-` /  /     |
+|======`-.____`-.___\_____/___.-`____.-'======|
+|                   `=---='                   |
+- - - - - - - - - - - - - - - - - - - - - - - -

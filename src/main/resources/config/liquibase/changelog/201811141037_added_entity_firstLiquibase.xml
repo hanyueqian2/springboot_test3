@@ -21,4 +21,22 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="201903041347" author="han">
+        <addColumn tableName="firstLiquibase">
+            <column name="count" type="DECIMAL(12, 2)" remarks="价钱"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="201903041350" author="han">
+        <modifyDataType tableName="firstLiquibase" columnName="count" newDataType="DECIMAL(13, 3)"/>
+    </changeSet>
+
+    <changeSet id="201903041419" author="han">
+        <addColumn tableName="firstLiquibase">
+            <column defaultValueNumeric="0.0000" afterColumn="count" name="amount_single" remarks="单价" type="DECIMAL(12, 4)" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
