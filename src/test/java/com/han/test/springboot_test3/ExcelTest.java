@@ -16,6 +16,7 @@ import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class ExcelTest {
@@ -344,6 +345,31 @@ public class ExcelTest {
     
     @Test
     public void testTime() {
-        System.out.println(System.currentTimeMillis());
+        System.out.println(new Date(1557417600000L).toLocaleString());
+    }
+    
+    @Test
+    public void testIterator(){
+        List<Student> list = new ArrayList<>();
+        list.add(new Student("1"));
+        list.add(new Student("2"));
+        list.add(new Student("3"));
+        list.add(new Student("4"));
+        Iterator<Student> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Student next = iterator.next();
+            next.setName("5");
+        }
+
+        for (Student student : list) {
+            System.out.println(student.getName());
+        }
+    }
+
+    @Test
+    public void testString(){
+        Object value = "123";
+        String str = "123";
+        System.out.println(str.equals(value));
     }
 }

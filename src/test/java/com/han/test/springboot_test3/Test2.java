@@ -1,5 +1,6 @@
 package com.han.test.springboot_test3;
 
+import com.han.test.springboot_test3.other.YunXia;
 import jdk.nashorn.tools.Shell;
 import org.junit.Test;
 
@@ -12,7 +13,15 @@ public class Test2 {
      */
     @Test
     public void testJConsole(){
+        helloInterface();
+    }
 
+    /**
+     * 注解测试
+     */
+    @YunXia
+    private void helloInterface() {
+        System.out.println("hello Interface");
     }
 }
 /**
@@ -36,5 +45,6 @@ class OOMObject{
         System.gc();
         Thread.sleep(5000);
     }
+
 
 }

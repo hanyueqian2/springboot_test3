@@ -27,6 +27,9 @@ public class Student {
         this.date = date;
         this.classes = classes;
     }
+    public Student(String name) {
+        this.name = name;
+    }
 
     public Student(){}
 

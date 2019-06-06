@@ -3,11 +3,12 @@ package com.han.test.springboot_test3.mapper;
 import com.han.test.springboot_test3.domain.Backlog;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-@Component
+@Repository
 public interface BacklogMapper extends Mapper<Backlog> {
 
     List<Backlog> getList(@Param("leaveTime") Long leaveTime,
