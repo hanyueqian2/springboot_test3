@@ -6,8 +6,6 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@Getter
-@Setter
 public class Student {
     @ExcelField(title = "学号", order = 1)
     private Long id;
@@ -41,5 +39,37 @@ public class Student {
                 ", date=" + date +
                 ", classes=" + classes +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Integer getClasses() {
+        return classes;
+    }
+
+    public void setClasses(Integer classes) {
+        this.classes = classes;
     }
 }

@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 //用于存储Student信息的类
-@Data
 @Table(name = "backlog")
 public class Backlog{
     @Id
@@ -33,4 +32,60 @@ public class Backlog{
     @Column(name = "enter")
     private String enter;//详细信息网址
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public String getBusinessNumber() {
+        return businessNumber;
+    }
+
+    public void setBusinessNumber(String businessNumber) {
+        this.businessNumber = businessNumber;
+    }
+
+    public String getTask() {
+        return task;
+    }
+
+    public void setTask(String task) {
+        this.task = task;
+    }
+
+    public Long getLeaveTime() {
+        return leaveTime;
+    }
+
+    public void setLeaveTime(Long leaveTime) {
+        this.leaveTime = leaveTime;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
+    public String getEnter() {
+        return enter;
+    }
+
+    public void setEnter(String enter) {
+        this.enter = enter;
+    }
 }
