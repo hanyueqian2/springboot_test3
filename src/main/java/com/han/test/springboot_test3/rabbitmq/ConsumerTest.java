@@ -4,6 +4,7 @@ import com.han.test.springboot_test3.utils.excel.RabbitMQUtil;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -60,10 +61,11 @@ public class ConsumerTest {
             }
         };
 
-        String tag = RabbitMQUtil.startConsume(channel, consumer);
-        System.out.println("Tag : " + tag);
-        Thread.sleep(1000 * 40);
-        RabbitMQUtil.cancelConsume(channel, tag);
+        String[] queues = new String[]{queue};
+        List<String> tags = RabbitMQUtil.startMoreConsume(channel, queues, consumer);
+        System.out.println("------start---------");
+        Thread.sleep(1000 * 30);
+        RabbitMQUtil.cancelMoreConsume(channel, tags);
 
         Thread.sleep(1000 * 60 * 10);
     }

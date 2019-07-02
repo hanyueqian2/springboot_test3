@@ -25,7 +25,7 @@ public class ProductTest {
         String msg = "hello >>>";
 
         rabbitMQTest.publishMsg(routingKey, msg);
-        Thread.sleep(1000 * 5);
+        Thread.sleep(1000 * 2);
         System.out.println("---------over------------");
     }
 }

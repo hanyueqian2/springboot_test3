@@ -138,6 +138,13 @@
 			<artifactId>spring-boot-starter-amqp</artifactId>
 			<version>1.5.2.RELEASE</version>
 		</dependency>
+		<!-- StringUtils -->
+		<dependency>
+			<groupId>org.kie.modules</groupId>
+			<artifactId>org-apache-commons-lang3</artifactId>
+			<version>6.5.0.Final</version>
+			<type>pom</type>
+		</dependency>
 
 	</dependencies>
 
