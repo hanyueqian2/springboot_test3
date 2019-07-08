@@ -56,4 +56,53 @@ public class Test2 {
             System.out.println(str);
         }
     }
+
+    @Test
+    public void testBerCode(){
+        String testX = "20.14";
+        String testY = "123.2";
+        String x = "";
+        String y = "";
+
+        x = merge(testX);
+        y = merge(testY);
+
+        System.out.println(x);
+        System.out.println(y);
+    }
+
+    private String merge(String num) {
+        String x = "";
+        String[] split = num.split("\\.");
+        x += addAfter(split[0]);
+        if (split.length == 1) {
+            x += "000";
+        } else {
+            x += addBefore(split[1]);
+        }
+        return x;
+    }
+
+
+    private String addAfter(String num) {
+        if (num.length() == 1) {
+            num = "00" + num;
+        } else if (num.length() == 2) {
+            num = "0" + num;
+        } else if (num.length() == 0) {
+            num = "000";
+        }
+        return num;
+    }
+    private String addBefore(String num) {
+        if (num.length() == 1) {
+            num = num + "00";
+        } else if (num.length() == 2) {
+            num = num + "0";
+        } else if (num.length() == 0) {
+            num = "000";
+        }
+        return num;
+    }
+
 }
