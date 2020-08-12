@@ -1,4 +1,4 @@
-package com.han.test.springboot_test3;
+package com.han.test.springboot_test3.test;
 
 import org.apache.ibatis.cache.impl.PerpetualCache;
 import org.junit.Test;
