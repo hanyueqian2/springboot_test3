@@ -20,4 +20,9 @@ public interface BacklogMapper extends Mapper<Backlog> {
 
     //void update(@Param("backlogs") List<Backlog> backlogs);//更新
 
+    List<Backlog> selectMany(@Param("testNum") Integer testNum);
+
+    int updateSome(@Param("testNum") Integer testNum);
+    int updateSome1(@Param("testNum") Integer testNum);
+
 }

@@ -10,9 +10,10 @@
         <result column="module" jdbcType="VARCHAR" property="module"/>
         <result column="business_number" jdbcType="VARCHAR" property="businessNumber"/>
         <result column="task" jdbcType="VARCHAR" property="task"/>
-        <result column="leave_time" jdbcType="BIGINT" property="leaveTime"/>
+        <result column="leave_time" jdbcType="TIMESTAMP" property="leaveTime"/>
         <result column="schedule" jdbcType="VARCHAR" property="schedule"/>
         <result column="enter" jdbcType="VARCHAR" property="enter"/>
+        <result column="testNum" jdbcType="INTEGER" property="testNum"/>
     </resultMap>
 
     <select id="getList" resultMap="Backlog">
@@ -29,90 +30,37 @@
             </if>
         </where>
     </select>
+    <select id="selectMany" resultMap="Backlog">
+        SELECT id,module,business_number,task,leave_time,schedule,enter,testNum FROM backlog
+        where 1=1
+        <if test="testNum != null and testNum != ''">
+            and testNum = #{testNum}
+        </if>
+    </select>
+
+    <update id="updateSome">
+        update backlog
+        <set>
+            task = '666',
+            leave_time = NOW()
+        </set>
+        where 1=1
+        <if test="testNum != null and testNum != ''">
+            testNum = #{testNum}
+        </if>
+    </update>
+    <update id="updateSome1">
+        update backlog
+        <set>
+            task = '555',
+            leave_time = NOW()
+        </set>
+        where 1=1
+        <if test="testNum != null and testNum != ''">
+            testNum = #{testNum}
+        </if>
+    </update>
 
 </mapper>
 
 
-
-
-
-
-
-        <!--<update id="update">-->
-        <!--<if test="backlogs != null">-->
-        <!--<foreach collection="backlogs" item="backlog" separator=";">-->
-        <!--UPDATE backlog-->
-        <!--<set>-->
-        <!--<if test="backlog.module != null">-->
-        <!--module=#{backlog.module},-->
-        <!--</if>-->
-        <!--<if test="backlog.businessNumber != null">-->
-        <!--business_number=#{backlog.businessNumber},-->
-        <!--</if>-->
-        <!--<if test="backlog.task != null">-->
-        <!--task=#{backlog.task},-->
-        <!--</if>-->
-        <!--<if test="backlog.leaveTime != null">-->
-        <!--leave_time=#{backlog.leaveTime},-->
-        <!--</if>-->
-        <!--<if test="backlog.schedule != null">-->
-        <!--schedule=#{backlog.schedule},-->
-        <!--</if>-->
-        <!--<if test="backlog.enter != null">-->
-        <!--enter=#{backlog.enter}-->
-        <!--</if>-->
-        <!--</set>-->
-        <!--WHERE id=#{backlog.id}-->
-        <!--</foreach>-->
-        <!--</if>-->
-        <!--</update>-->
-
-        <!--<insert id="save">
-            <if test="backlogs != null">
-                <foreach collection="backlogs" item="backlog" separator=";">
-                    INSERT INTO backlog
-                    <trim prefix="(" suffix=")" suffixOverrides=",">
-                        <if test="backlog.module != null">
-                            module,
-                        </if>
-                        <if test="backlog.businessNumber != null">
-                            business_number,
-                        </if>
-                        <if test="backlog.task != null">
-                            task,
-                        </if>
-                        <if test="backlog.leaveTime != null">
-                            leave_time,
-                        </if>
-                        <if test="backlog.schedule != null">
-                            schedule,
-                        </if>
-                        <if test="backlog.enter != null">
-                            enter
-                        </if>
-                    </trim>
-                    VALUES
-                    <trim prefix="(" suffix=")" suffixOverrides=",">
-                        <if test="backlog.module != null">
-                            #{backlog.module},
-                        </if>
-                        <if test="backlog.businessNumber != null">
-                            #{backlog.businessNumber},
-                        </if>
-                        <if test="backlog.task != null">
-                            #{backlog.task},
-                        </if>
-                        <if test="backlog.leaveTime != null">
-                            #{backlog.leaveTime},
-                        </if>
-                        <if test="backlog.schedule != null">
-                            #{backlog.schedule},
-                        </if>
-                        <if test="backlog.enter != null">
-                            #{backlog.enter}
-                        </if>
-                    </trim>
-
-                </foreach>
-            </if>
-        </insert>-->

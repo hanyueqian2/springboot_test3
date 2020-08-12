@@ -1,10 +1,9 @@
 package com.han.test.springboot_test3.rabbitmq;
 
-import com.han.test.springboot_test3.utils.excel.RabbitMQUtil;
+import com.han.test.springboot_test3.service.RabbitMQUtil;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -13,28 +12,10 @@ import java.util.concurrent.TimeoutException;
 public class ConsumerTest {
     private static final String exchangeName = "direct.exchange";
 
-    public void msgConsumer(String queueName, String routingKey) {
-        try {
-            MyConsumer.consumerMsg(exchangeName, queueName, routingKey);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) throws InterruptedException, IOException, TimeoutException {
-//        ConsumerTest consumerTest = new ConsumerTest();
-//        String[] routingKey = new String[]{"aaa", "bbb"};
-//        String[] queueNames = new String[]{"qa", "qb"};
-//
-//        for (int i = 0; i < 2; i++) {
-//            consumerTest.msgConsumer(queueNames[i], routingKey[i]);
-//        }
+    public static void msgConsumer() throws IOException, TimeoutException {
         String queue = "QueueTest1";
         String exchange = "ExchangeTest1";
         String routingKey = "RoutingKeyTest1";
-
         Connection connection = RabbitMQUtil.getConnection();
         Channel channel = RabbitMQUtil.createChannel(connection);
 
@@ -53,20 +34,35 @@ public class ConsumerTest {
 
                 try {
                     System.out.println("[" + queue + "] Received '" + message);
+                    System.out.println(Thread.currentThread().getName());
+                    synchronized (consumerTag) {
+                        try {
+                            consumerTag.wait(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 } finally {
-                    System.out.println("[" + queue + "] Done");
+                    System.out.println("[" + queue + "] Done" + consumerTag);
                     //确认收到的一条或多条消息
                     channel.basicAck(envelope.getDeliveryTag(), false);
                 }
             }
         };
 
-        String[] queues = new String[]{queue};
-        List<String> tags = RabbitMQUtil.startMoreConsume(channel, queues, consumer);
+        channel.basicConsume(queue, false, consumer);
+    }
+
+    public static void main(String[] args) throws InterruptedException, IOException, TimeoutException {
+        msgConsumer();
+        msgConsumer();
+        msgConsumer();
+        msgConsumer();
+        msgConsumer();
         System.out.println("------start---------");
         Thread.sleep(1000 * 30);
-        RabbitMQUtil.cancelMoreConsume(channel, tags);
 
         Thread.sleep(1000 * 60 * 10);
     }
 }
+

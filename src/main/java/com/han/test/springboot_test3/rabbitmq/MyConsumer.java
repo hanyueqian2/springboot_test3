@@ -1,6 +1,6 @@
 package com.han.test.springboot_test3.rabbitmq;
 
-import com.han.test.springboot_test3.utils.excel.RabbitMQUtil;
+import com.han.test.springboot_test3.service.RabbitMQUtil;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
@@ -50,6 +50,10 @@ public class MyConsumer {
         */
         // 取消自动ack
         //使用服务器生成的consumerTag启动非nolocal、非独占的消费者。
+        channel.basicConsume(queue, false, consumer);
+        channel.basicConsume(queue, false, consumer);
+        channel.basicConsume(queue, false, consumer);
+        channel.basicConsume(queue, false, consumer);
         channel.basicConsume(queue, false, consumer);
 
 

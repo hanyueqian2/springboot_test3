@@ -39,4 +39,30 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="201907131254" author="han">
+        <createIndex tableName="firstLiquibase" indexName="idx_username" unique="false">
+            <column name="username"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="201907301505" author="han">
+        <createTable tableName="backlog">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="module" type="VARCHAR(20)"/>
+            <column name="leave_time" type="datetime"/>
+            <column name="business_number" type="VARCHAR(20)"/>
+            <column name="task" type="VARCHAR(20)"/>
+            <column name="schedule" type="VARCHAR(20)"/>
+            <column name="enter" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="201908061337" author="han">
+        <addColumn tableName="backlog">
+            <column name="testNum" type="INT" defaultValueNumeric="0"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

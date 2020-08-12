@@ -51,6 +51,13 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+		<!-- 读写properties文件 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>2.5</version>
+		</dependency>
+
 		<!-- json的依赖 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -146,6 +153,60 @@
 			<type>pom</type>
 		</dependency>
 
+		<!-- redis依赖包 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
+		<!-- spirng ws 依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		<!-- 生成wsdl文件 -->
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
+		<!-- cxf相关依赖 -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+			<version>3.2.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-core</artifactId>
+			<version>3.2.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>3.2.11</version>
+		</dependency>
+
+		<!-- ORCA算法 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+
+
+		<!-- 调用dll文件 -->
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>5.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.crab2died</groupId>
+			<artifactId>Excel4J</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -162,13 +223,14 @@
                             <target>1.8</target>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>default-testCompile</id>
-                        <configuration>
-                            <source>1.8</source>
-                            <target>1.8</target>
-                        </configuration>
-                    </execution>
+<!--                    <execution>-->
+<!--                        <id>default-testCompile</id>-->
+<!--                        <configuration>-->
+<!--							<compilerArgument>-proc:none</compilerArgument>-->
+<!--                            <source>1.8</source>-->
+<!--                            <target>1.8</target>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
                 </executions>
             </plugin>
 
@@ -223,27 +285,34 @@
 				</configuration>
 			</plugin>
 
-
-            <!-- 自动生成liquibase -->
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.5.3</version>
-                <configuration>
-                    <changeLogFile>src/main/resources/config/liquibase/changelog/changelog_original.xml</changeLogFile>
-                    <diffChangeLogFile>
-                        src/main/resources/config/liquibase/changelog/changelog_original.xml
-                    </diffChangeLogFile>
-					<outputChangeLogFile>src/main/resources/config/liquibase/changelog/changelog_original.xml</outputChangeLogFile>
-                    <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/sys</url>
-                    <defaultSchemaName>sys</defaultSchemaName>
-                    <username>root</username>
-                    <password>h384175954+</password>
-                    <verbose>true</verbose>
-                    <logging>debug</logging>
-                </configuration>
-            </plugin>
+			<!-- liquibase反向生成 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.5.3</version>
+				<configuration>
+					<changeLogFile>src/main/resources/config/liquibase/master_changelog.xml</changeLogFile>
+					<diffChangeLogFile>
+						src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml
+					</diffChangeLogFile>
+					<outputChangeLogFile>src/main/resources/config/liquibase/changelog/changelog_original.xml
+					</outputChangeLogFile>
+					<driver>com.mysql.jdbc.Driver</driver>
+					<url>jdbc:mysql://192.168.89.169:3306/world?useSSL=false&amp;allowMultiQueries=true</url>
+					<dropFirst>false</dropFirst>
+					<defaultSchemaName/>
+					<username>root</username>
+					<password>root</password>
+					<referenceUrl>hibernate:spring:com.jaguar.myapp.domain?dialect=&amp;hibernate.ejb.naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy</referenceUrl>
+					<verbose>true</verbose>
+					<logging>debug</logging>
+					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+				</configuration>
+			</plugin>
 
 		</plugins>
 	</build>

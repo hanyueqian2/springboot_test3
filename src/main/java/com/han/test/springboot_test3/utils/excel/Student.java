@@ -1,12 +1,10 @@
 package com.han.test.springboot_test3.utils.excel;
 
 import com.github.crab2died.annotation.ExcelField;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Date;
 
-public class Student {
+public class Student implements Cloneable{
     @ExcelField(title = "学号", order = 1)
     private Long id;
 
@@ -30,6 +28,23 @@ public class Student {
     }
 
     public Student(){}
+
+    @Override
+    protected Student clone(){
+        Student student = null;
+        try {
+            student = (Student) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return student;
+    }
+
+
+//    @Override
+//    protected Object clone() throws CloneNotSupportedException {
+//        return super.clone();
+//    }
 
     @Override
     public String toString() {

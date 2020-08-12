@@ -1,5 +1,7 @@
 package com.han.test.springboot_test3.controller;
 
+import com.han.test.springboot_test3.service.ExcelHandleService;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -8,6 +10,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.IgnoredErrorType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,15 @@ import java.nio.file.Paths;
 @Controller
 @ResponseBody
 public class ExcelController {
+
+    @Autowired
+    private ExcelHandleService excelHandleService;
+
+    @GetMapping("/excelForStock")
+    public String excelForStock() {
+        excelHandleService.excelForStock();
+        return "OK";
+    }
 
     @PostMapping("/excelImport")
     public void excelImport(@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {

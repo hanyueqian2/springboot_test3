@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.han.test.springboot_test3.mapper.WmsAlleyMapper">
+  <resultMap id="BaseResultMap" type="com.han.test.springboot_test3.service.arithmetic.WmsAlleyDTO">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="alley_code" jdbcType="VARCHAR" property="alleyCode" />
+    <result column="wh_code" jdbcType="VARCHAR" property="whCode" />
+    <result column="stg_typ_code" jdbcType="VARCHAR" property="stgTypCode" />
+    <result column="alley_text" jdbcType="VARCHAR" property="alleyText" />
+    <result column="open_dir" jdbcType="VARCHAR" property="openDir" />
+    <result column="temp_lock" jdbcType="VARCHAR" property="tempLock" />
+    <result column="blk_rea_code" jdbcType="VARCHAR" property="blkReaCode" />
+    <result column="blk_user" jdbcType="VARCHAR" property="blkUser" />
+    <result column="ind_blk_rm_u" jdbcType="VARCHAR" property="indBlkRmU" />
+    <result column="ind_blk_pm_u" jdbcType="VARCHAR" property="indBlkPmU" />
+    <result column="coo_x" jdbcType="DECIMAL" property="cooX" />
+    <result column="coo_y" jdbcType="DECIMAL" property="cooY" />
+    <result column="x_end" jdbcType="DECIMAL" property="xEnd" />
+    <result column="coo_z" jdbcType="DECIMAL" property="cooZ" />
+    <result column="map_code" jdbcType="VARCHAR" property="mapCode" />
+    <result column="layer_code" jdbcType="INTEGER" property="layerCode" />
+    <result column="agv_stg" jdbcType="DECIMAL" property="agvStg" />
+    <result column="alley_mix_strategy_code" jdbcType="VARCHAR" property="alleyMixStrategyCode" />
+    <result column="hot_index" jdbcType="VARCHAR" property="hotIndex" />
+    <result column="alley_str1" jdbcType="VARCHAR" property="alleyStr1" />
+    <result column="alley_str2" jdbcType="VARCHAR" property="alleyStr2" />
+    <result column="alley_str3" jdbcType="VARCHAR" property="alleyStr3" />
+    <result column="alley_str4" jdbcType="VARCHAR" property="alleyStr4" />
+    <result column="alley_str5" jdbcType="VARCHAR" property="alleyStr5" />
+    <result column="storage_loc_count" jdbcType="INTEGER" property="storageLocCount" />
+    <result column="weight_num" jdbcType="INTEGER" property="weightNum" />
+    <result column="exit_coo_x" jdbcType="VARCHAR" property="exitCooX" />
+    <result column="goods" jdbcType="VARCHAR" property="goods" />
+    <result column="goods_type" jdbcType="VARCHAR" property="goodsType" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="storage" jdbcType="VARCHAR" property="storage" />
+  </resultMap>
+
+  <resultMap id="TaskResultMap" type="com.han.test.springboot_test3.service.arithmetic.AlleyTypeAndNum">
+    <result column="storage_loc_count" jdbcType="VARCHAR" property="storageLocCount" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    alley_code, wh_code, stg_typ_code, alley_text, open_dir, temp_lock, blk_rea_code, 
+    blk_user, ind_blk_rm_u, ind_blk_pm_u, coo_x, coo_y, x_end, coo_z, map_code, layer_code, 
+    agv_stg, alley_mix_strategy_code, hot_index, alley_str1, alley_str2, alley_str3, 
+    alley_str4, alley_str5, storage_loc_count, weight_num, exit_coo_x, goods, goods_type,
+    area_code, storage
+  </sql>
+  <select id="selectPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from wms_alley
+     where 1=1
+    <if test="searchKey != null and searchKey != ''">
+      and 1=1
+    </if>
+    <if test="startTime != null">
+      and created_time &gt;= #{startTime,jdbcType=BIGINT}
+    </if>
+    <if test="endTime != null">
+      and created_time &lt;= #{endTime,jdbcType=BIGINT}
+    </if>
+    order by last_modified_time desc
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from wms_alley
+    where goods = '0'
+  </select>
+  <select id="selectNotFull" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from wms_alley
+    where goods = '2'
+  </select>
+
+  <select id="selectAllAlleyType" resultMap="TaskResultMap">
+    select storage_loc_count, count(*) as num from wms_alley
+    where goods = '0'
+    group by storage_loc_count
+    order by storage_loc_count desc
+  </select>
+
+  <select id="selectByGoodsType" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from wms_alley
+    where goods = '1'
+    and goods_type = #{goodsType}
+  </select>
+
+  <update id="updateByCode">
+    update wms_alley
+    <set>
+        goods = '1',
+        goods_type = #{goodsType}
+    </set>
+    where alley_code = #{alleyCode}
+  </update>
+</mapper>

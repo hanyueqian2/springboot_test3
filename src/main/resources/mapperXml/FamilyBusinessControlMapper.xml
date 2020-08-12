@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.han.test.springboot_test3.mapper.FamilyBusinessControlMapper">
+  <resultMap id="BaseResultMap" type="com.han.test.springboot_test3.domain.FamilyBusinessControl">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="stock_num" jdbcType="VARCHAR" property="stockNum" />
+    <result column="date_str" jdbcType="VARCHAR" property="dateStr" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="equity_ratio" jdbcType="VARCHAR" property="equityRatio" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, stock_num, date_str, name, equity_ratio
+  </sql>
+  <select id="selectPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from family_business_control
+     where 1=1
+  </select>
+
+  <insert id="insertList">
+    insert into family_business_control (stock_num, date_str, name, equity_ratio)
+    values
+    <foreach collection="list" separator="," item="item">
+        (#{item.stockNum},#{item.dateStr},#{item.name},#{item.equityRatio})
+    </foreach>
+  </insert>
+</mapper>

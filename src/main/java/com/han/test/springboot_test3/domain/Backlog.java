@@ -1,14 +1,17 @@
 package com.han.test.springboot_test3.domain;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 //用于存储Student信息的类
 @Table(name = "backlog")
+@ToString
 public class Backlog{
     @Id
     @GeneratedValue(generator = "JDBC")
@@ -24,7 +27,7 @@ public class Backlog{
     private String task;//任务
 
     @Column(name = "leave_time")
-    private Long leaveTime;//离港日期
+    private Date leaveTime;//离港日期
 
     @Column(name = "schedule")
     private String schedule;//进度
@@ -32,6 +35,16 @@ public class Backlog{
     @Column(name = "enter")
     private String enter;//详细信息网址
 
+    @Column(name = "testNum")
+    private Integer testNum;
+
+    public Integer getTestNum() {
+        return testNum;
+    }
+
+    public void setTestNum(Integer testNum) {
+        this.testNum = testNum;
+    }
 
     public Long getId() {
         return id;
@@ -65,11 +78,11 @@ public class Backlog{
         this.task = task;
     }
 
-    public Long getLeaveTime() {
+    public Date getLeaveTime() {
         return leaveTime;
     }
 
-    public void setLeaveTime(Long leaveTime) {
+    public void setLeaveTime(Date leaveTime) {
         this.leaveTime = leaveTime;
     }
 

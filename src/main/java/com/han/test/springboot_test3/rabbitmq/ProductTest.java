@@ -11,7 +11,7 @@ public class ProductTest {
     public void publishMsg(String routingKey, String msg) {
         try {
             //使用Direct类型的交换机
-            MyProducer.publishMsg(EXCHANGE_NAME, BuiltinExchangeType.DIRECT, routingKey, msg);
+            MyProducer.publishMsg(EXCHANGE_NAME, BuiltinExchangeType.TOPIC, routingKey, msg);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -22,9 +22,10 @@ public class ProductTest {
         String queue = "QueueTest1";
         String routingKey = "RoutingKeyTest1";
         ProductTest rabbitMQTest = new ProductTest();
-        String msg = "hello >>>";
-
-        rabbitMQTest.publishMsg(routingKey, msg);
+        for (int i = 0; i < 15; i++) {
+            String msg = "hello >>>" + i;
+            rabbitMQTest.publishMsg(routingKey, msg);
+        }
         Thread.sleep(1000 * 2);
         System.out.println("---------over------------");
     }

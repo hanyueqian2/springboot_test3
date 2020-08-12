@@ -1,6 +1,6 @@
 package com.han.test.springboot_test3.rabbitmq;
 
-import com.han.test.springboot_test3.utils.excel.RabbitMQUtil;
+import com.han.test.springboot_test3.service.RabbitMQUtil;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

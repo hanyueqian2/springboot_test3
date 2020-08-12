@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * 用于存储Student信息的类
@@ -41,7 +42,7 @@ public class BacklogDto{
      * 离港日期
      */
     @Column(name = "leave_time")
-    private Long leaveTime;
+    private Date leaveTime;
 
     /**
      * 进度
@@ -87,11 +88,11 @@ public class BacklogDto{
         this.task = task;
     }
 
-    public Long getLeaveTime() {
+    public Date getLeaveTime() {
         return leaveTime;
     }
 
-    public void setLeaveTime(Long leaveTime) {
+    public void setLeaveTime(Date leaveTime) {
         this.leaveTime = leaveTime;
     }
 
