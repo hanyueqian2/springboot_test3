@@ -153,9 +153,10 @@ commit_id是log查出节点的id
 
 
 
-7.切换分支
+7.切换分支,分支合并
 -
 
+切换分支  
 查询远程分支,可以看到分支名称
 
     git branch -a
@@ -165,6 +166,18 @@ commit_id是log查出节点的id
     git checkout [分支名称]
     
 注意: 切换分支前一定要保存修改(commit)
+
+分支合并  
+合并某分支到当前分支
+
+    git merge [分支名称]
+    
+冲突处理,解决冲突后
+
+    git add .
+    git commit -m "备注"
+
+跑路必备: 删除分支`git branch -d [分支名称]`
 
 8.SSH
 -
@@ -185,4 +198,4 @@ commit_id是log查出节点的id
 
 10.IDEA/WebStorm部分功能介绍
 -
-以后再写
+以后再写吧
